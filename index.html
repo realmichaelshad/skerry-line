@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>Skerry Line, Harrowick to Tern Holm</title>
+    <meta name="description" content="A ferry timetable you can drag through the day. The sun moves, the tide turns, and the boat is exactly where the schedule says it is." />
+    <meta name="theme-color" content="#0f5a66" />
+    <link rel="icon" type="image/svg+xml" href="./favicon.svg" />
+  </head>
+  <body>
+    <header class="top">
+      <span class="brand">Skerry Line</span>
+      <span class="route">Harrowick to Tern Holm</span>
+    </header>
+
+    <main>
+      <section class="hero" aria-label="The crossing at the time you choose">
+        <div class="scene-wrap">
+          <canvas id="scene" aria-hidden="true"></canvas>
+        </div>
+        <div class="dial">
+          <div class="clock">
+            <p class="time" id="time" aria-live="off">--:--</p>
+            <div class="words">
+              <p class="sentence" id="sentence"></p>
+              <p class="tide" id="tide"></p>
+            </div>
+            <button id="now" class="now" type="button" hidden>Now</button>
+          </div>
+          <div class="strip-wrap">
+            <canvas id="day-strip" role="slider" tabindex="0" aria-label="Time of day" aria-valuemin="0" aria-valuemax="1439" aria-valuenow="0"></canvas>
+          </div>
+          <div class="timetable" id="timetable" aria-label="Today's sailings"></div>
+        </div>
+      </section>
+
+      <section class="book" id="book" aria-labelledby="book-h">
+        <div class="book-text">
+          <h2 id="book-h">Book a crossing</h2>
+          <form id="book-form" class="book-form">
+            <label class="field">
+              <span>Sailing</span>
+              <select id="b-sailing"></select>
+            </label>
+            <div class="field stepper" data-key="adult">
+              <span>Foot passengers <small>£5 each</small></span>
+              <div class="step"><button type="button" class="minus" aria-label="One fewer foot passenger">&minus;</button><output id="b-adult">1</output><button type="button" class="plus" aria-label="One more foot passenger">+</button></div>
+            </div>
+            <div class="field stepper" data-key="child">
+              <span>Children under 16 <small>£2 each</small></span>
+              <div class="step"><button type="button" class="minus" aria-label="One fewer child">&minus;</button><output id="b-child">0</output><button type="button" class="plus" aria-label="One more child">+</button></div>
+            </div>
+            <label class="field check">
+              <input type="checkbox" id="b-car" />
+              <span>Car with driver <small>£18</small></span>
+            </label>
+            <div class="book-total"><span>Fare</span><strong id="b-fare">£5</strong></div>
+            <button type="submit" class="book-btn">Book</button>
+            <p class="demo">Demo. Nothing is charged or sent.</p>
+          </form>
+        </div>
+        <figure class="poster">
+          <img src="./src/assets/skerry-poster.webp" width="720" height="1080" loading="lazy" alt="Travel poster of the crossing at dusk: the Kittiwake, a white ferry with an orange funnel, sails past a striped lighthouse while lamps glow on the stone quay at Harrowick." />
+        </figure>
+        <div class="ticket" id="ticket" hidden tabindex="-1" aria-live="polite"></div>
+      </section>
+
+      <section class="fares" aria-labelledby="fares-h">
+        <h2 id="fares-h">Fares</h2>
+        <table class="fare-table">
+          <tbody id="fare-rows"></tbody>
+        </table>
+        <p class="note">Single crossing, either way. Return is the same again.</p>
+      </section>
+
+      <section class="crossing" aria-labelledby="crossing-h">
+        <h2 id="crossing-h">The crossing</h2>
+        <figure>
+          <img src="./src/assets/skerry-harbor.webp" width="1200" height="675" loading="lazy" alt="Morning at Harrowick: the ferry lies at the stone quay with its ramp to the gangway, gulls sit on the white railing by the red ferry office, and the lighthouse stands on its rocks across the sound." />
+        </figure>
+        <p>Twenty-five minutes, quay to quay. The Kittiwake carries twelve cars and seventy people, and she sails in most weathers.</p>
+        <p>Out of Harrowick you pass the Grey Skerries to port and the light on Calf Rock, then run in under the holm to the pier at Tern Holm.</p>
+        <p>Cars queue in the two lanes beside the red ferry office. Foot passengers wait on the quay and board last.</p>
+        <p class="note" id="sun-note"></p>
+      </section>
+    </main>
+
+    <footer class="foot">
+      <p>Concept project. Skerry Line is a fictional ferry.</p>
+      <p><a href="https://michaelshadpour.com" target="_blank" rel="noopener">Design and build: Michael Shadpour</a></p>
+    </footer>
+    <script type="module" src="./src/main.ts"></script>
+  </body>
+</html>
